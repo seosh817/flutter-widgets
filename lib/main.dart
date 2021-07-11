@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widgets/screen/animated_container_screen.dart';
 import 'package:flutter_widgets/screen/animated_opacity_screen.dart';
 import 'package:flutter_widgets/screen/drawer_screen.dart';
+import 'package:flutter_widgets/screen/flexible_expanded_screen.dart';
 import 'package:flutter_widgets/screen/form_validation_screen.dart';
 import 'package:flutter_widgets/screen/method_channel_screen.dart';
 import 'package:flutter_widgets/screen/orientation_builder_screen.dart';
@@ -134,6 +135,15 @@ class HomeScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => MethodChannelScreen()));
+                    },
+                  ),
+                  ListTile(
+                    title: Text('Expanded Flexible'),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FlexibleExpandedScreen()));
                     },
                   ),
                 ],
