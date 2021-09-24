@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/screen/animated_container_screen.dart';
 import 'package:flutter_widgets/screen/animated_opacity_screen.dart';
+import 'package:flutter_widgets/screen/button_above_keyboard.dart';
 import 'package:flutter_widgets/screen/drawer_screen.dart';
 import 'package:flutter_widgets/screen/flexible_expanded_screen.dart';
 import 'package:flutter_widgets/screen/form_validation_screen.dart';
@@ -18,11 +19,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Widgets',
       theme: ThemeData(
-        // primarySwatch: Colors.yellow
-        primaryColor: Colors.blue,
-        accentColor: Colors.yellow,
-        brightness: Brightness.dark
-      ),
+          // primarySwatch: Colors.yellow
+          primaryColor: Colors.blue,
+          accentColor: Colors.yellow,
+          brightness: Brightness.dark),
+      routes: pages,
       home: new HomeScreen(),
     );
   }
@@ -43,30 +44,16 @@ class HomeScreen extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        new MaterialPageRoute(
-                            builder: (context) => AnimatedContainerScreen()));
+                    Navigator.push(context, new MaterialPageRoute(builder: (context) => AnimatedContainerScreen()));
                   },
-                  style: ButtonStyle(
-                      textStyle: MaterialStateProperty.all(
-                          TextStyle(fontSize: 14, color: Colors.white)),
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.blue)),
+                  style: ButtonStyle(textStyle: MaterialStateProperty.all(TextStyle(fontSize: 14, color: Colors.white)), backgroundColor: MaterialStateProperty.all<Color>(Colors.blue)),
                   child: Text("AnimatedContainer"),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AnimatedOpacityScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => AnimatedOpacityScreen()));
                   },
-                  style: ButtonStyle(
-                      textStyle: MaterialStateProperty.all(
-                          TextStyle(fontSize: 14, color: Colors.white)),
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.blue)),
+                  style: ButtonStyle(textStyle: MaterialStateProperty.all(TextStyle(fontSize: 14, color: Colors.white)), backgroundColor: MaterialStateProperty.all<Color>(Colors.blue)),
                   child: Text("AnimatedOpacity"),
                 ),
               ],
@@ -77,73 +64,58 @@ class HomeScreen extends StatelessWidget {
                   ListTile(
                     title: Text('Drawer'),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DrawerScreen()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => DrawerScreen()));
                     },
                   ),
                   ListTile(
                     title: Text('SnackBar'),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SnackBarScreen()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => SnackBarScreen()));
                     },
                   ),
                   ListTile(
                     title: Text('OrientationBuilder'),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => OrientationBuilderScreen()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => OrientationBuilderScreen()));
                     },
                   ),
                   ListTile(
                     title: Text('TabController'),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => TabControllerScreen()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => TabControllerScreen()));
                     },
                   ),
                   ListTile(
                     title: Text('FormValidation'),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => FormValidationScreen()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => FormValidationScreen()));
                     },
                   ),
                   ListTile(
                     title: Text('Swipe to Dismiss'),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SwipeToDismissScreen()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => SwipeToDismissScreen()));
                     },
                   ),
                   ListTile(
                     title: Text('MethodChannel'),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MethodChannelScreen()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => MethodChannelScreen()));
                     },
                   ),
                   ListTile(
                     title: Text('Expanded Flexible'),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => FlexibleExpandedScreen()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => FlexibleExpandedScreen()));
+                    },
+                  ),
+                  ListTile(
+                    title: Text('ButtonAboveKeyboardScreen'),
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        ButtonAboveKeyboardScreen.routeName,
+                      );
                     },
                   ),
                 ],
@@ -155,3 +127,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+final pages = {
+  ButtonAboveKeyboardScreen.routeName: (context) => ButtonAboveKeyboardScreen(),
+};
