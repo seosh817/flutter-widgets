@@ -15,46 +15,42 @@ class ButtonAboveKeyboardScreen extends StatefulWidget {
 }
 
 class _ButtonAboveKeyboardPageState extends State<ButtonAboveKeyboardScreen> {
-  TextEditingController _newPasswordController = TextEditingController();
-  TextEditingController _newConfirmPasswordController = TextEditingController();
+  TextEditingController _idController = TextEditingController();
+  TextEditingController _passWordController = TextEditingController();
 
-  bool _isNewValid;
+  bool _isValid;
   bool _isNewObscure;
 
   bool _isNewConfirmValid;
-  bool _isNewConfirmObscure;
+  bool _isPasswordObscure;
 
 
-  void _newObscureToggle() {
-    setState(() {
-      _isNewObscure = !_isNewObscure;
-    });
-  }
-
-  void _newConfirmObscureToggle() {
-    setState(() {
-      _isNewConfirmObscure = !_isNewConfirmObscure;
-    });
-  }
 
   @override
   void initState() {
     super.initState();
-    _isNewValid = false;
+    _isValid = false;
     _isNewObscure = true;
     _isNewConfirmValid = false;
-    _isNewConfirmObscure = true;
-    _newPasswordController.addListener(() {
+    _isPasswordObscure = true;
+    _idController.addListener(() {
     });
-    _newConfirmPasswordController.addListener(() {
+    _passWordController.addListener(() {
     });
   }
 
   @override
   void dispose() {
-    _newPasswordController.dispose();
-    _newConfirmPasswordController.dispose();
+    _idController.dispose();
+    _passWordController.dispose();
     super.dispose();
+  }
+
+
+  void _passwordObscureToggle() {
+    setState(() {
+      _isPasswordObscure = !_isPasswordObscure;
+    });
   }
 
   @override
@@ -65,7 +61,7 @@ class _ButtonAboveKeyboardPageState extends State<ButtonAboveKeyboardScreen> {
       elevation: 0.0,
       centerTitle: true,
       title: Text(
-        '로그인',
+        'Login Screen',
         style: kNotoSansMedium16.copyWith(color: AppColors.dark),
       ),
       leading: IconButton(
@@ -79,168 +75,132 @@ class _ButtonAboveKeyboardPageState extends State<ButtonAboveKeyboardScreen> {
         node.requestFocus(FocusNode());
       },
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         appBar: appBar,
-        bottomSheet: Padding(
-          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: Container(
-            width: double.infinity,
-            color: Colors.white,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(vertical: 14),
-                primary: AppColors.azul,
-                onSurface: AppColors.blueGrey,
-            ),
-              child: Text('확인'),
-            ),
-          ),
-        ),
-        body: SingleChildScrollView(
-          reverse: true,
-          physics: BouncingScrollPhysics(),
-          child: Container(
-            height: MediaQuery.of(context).size.height - appBar.preferredSize.height,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      RichText(
-                        text: TextSpan(children: [
-                          TextSpan(text: 'ButtonAboveKeybaord', style: kNotoSansBold24.copyWith(color: AppColors.dark)),
-                          TextSpan(text: ' 테스트', style: kNotoSansMedium24.copyWith(color: AppColors.dark)),
-                        ]),
-                      ),
-                      SizedBox(
-                        height: 36.0,
-                      ),
-                      TextFormField(
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        keyboardType: TextInputType.number,
-                        style: kNotoSansMedium16.copyWith(color: AppColors.dark),
-                        textInputAction: TextInputAction.next,
-                        onEditingComplete: () {
-                          node.nextFocus();
-                        },
-                        autofocus: false,
-                        cursorColor: AppColors.azul,
-                        decoration: InputDecoration(
-                          counterText: ' ',
-                          labelText: "확인코드",
-                          labelStyle: kNotoSansMedium12.copyWith(
+        body: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RichText(
+                      text: TextSpan(children: [
+                        TextSpan(text: 'ButtonAboveKeyboard Example', style: kNotoSansBold24.copyWith(color: AppColors.dark)),
+                      ]),
+                    ),
+                    SizedBox(
+                      height: 36.0,
+                    ),
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: _idController,
+                      keyboardType: TextInputType.name,
+                      obscureText: _isNewObscure,
+                      style: kNotoSansMedium16.copyWith(color: AppColors.dark),
+                      textInputAction: TextInputAction.next,
+                      onEditingComplete: _isValid
+                          ? () {
+                        node.nextFocus();
+                      }
+                          : null,
+                      autofocus: false,
+                      cursorColor: AppColors.azul,
+                      decoration: InputDecoration(
+                        counterText: ' ',
+                        labelText: "ID",
+                        labelStyle: kNotoSansMedium12.copyWith(
+                          color: AppColors.lightBlueGrey,
+                        ),
+                        hintText: 'ID',
+                        hintStyle: kNotoSansMedium16.copyWith(
+                          color: AppColors.lightBlueGrey,
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors.azul,
+                            width: 1.5,
+                          ),
+                        ),
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(
                             color: AppColors.lightBlueGrey,
+                            width: 1.0,
                           ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: AppColors.azul,
-                              width: 1.5,
-                            ),
+                        ),
+                        alignLabelWithHint: true,
+                        isDense: true,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: _passWordController,
+                      keyboardType: TextInputType.visiblePassword,
+                      // validator: (String value) => passwordConfirmValidator(value, _newPasswordController.text),
+                      obscureText: _isPasswordObscure,
+                      style: kNotoSansMedium16.copyWith(color: AppColors.dark),
+                      textInputAction: TextInputAction.done,
+                      onEditingComplete: _isNewConfirmValid
+                          ? () {
+                        node.unfocus();
+                      }
+                          : null,
+                      autofocus: false,
+                      cursorColor: AppColors.azul,
+                      decoration: InputDecoration(
+                        labelText: "Password",
+                        labelStyle: kNotoSansMedium12.copyWith(
+                          color: AppColors.lightBlueGrey,
+                        ),
+                        hintText: 'Password',
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors.azul,
+                            width: 1.5,
                           ),
-                          border: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: AppColors.lightBlueGrey,
-                              width: 1.0,
-                            ),
+                        ),
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors.lightBlueGrey,
+                            width: 1.0,
                           ),
-                          alignLabelWithHint: true,
-                          isDense: true,
+                        ),
+                        alignLabelWithHint: true,
+                        isDense: true,
+                        suffixIcon: _isPasswordObscure
+                            ? IconButton(
+                          icon: Image.asset('images/invisible_icon.png'),
+                          onPressed: () => _passwordObscureToggle(),
+                        )
+                            : IconButton(
+                          icon: Image.asset('images/visible_icon.png'),
+                          onPressed: () => _passwordObscureToggle(),
                         ),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        controller: _newPasswordController,
-                        keyboardType: TextInputType.visiblePassword,
-                        // validator: passwordValidator,
-                        obscureText: _isNewObscure,
-                        style: kNotoSansMedium16.copyWith(color: AppColors.dark),
-                        textInputAction: TextInputAction.next,
-                        onEditingComplete: _isNewValid
-                            ? () {
-                          node.nextFocus();
-                        }
-                            : null,
-                        autofocus: false,
-                        cursorColor: AppColors.azul,
-                        decoration: InputDecoration(
-                          counterText: ' ',
-                          labelText: "새 비밀번호",
-                          labelStyle: kNotoSansMedium12.copyWith(
-                            color: AppColors.lightBlueGrey,
-                          ),
-                          hintText: '새 비밀번호(영문 숫자 8자리 이상)',
-                          hintStyle: kNotoSansMedium16.copyWith(
-                            color: AppColors.lightBlueGrey,
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: AppColors.azul,
-                              width: 1.5,
-                            ),
-                          ),
-                          border: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: AppColors.lightBlueGrey,
-                              width: 1.0,
-                            ),
-                          ),
-                          alignLabelWithHint: true,
-                          isDense: true,
+                    ),
+                    SizedBox(height: 400,),
+                    Container(
+                      width: double.infinity,
+                      color: Colors.white,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(vertical: 14),
+                          primary: AppColors.azul,
+                          onSurface: AppColors.blueGrey,
                         ),
+                        child: Text('Login'),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        controller: _newConfirmPasswordController,
-                        keyboardType: TextInputType.visiblePassword,
-                        // validator: (String value) => passwordConfirmValidator(value, _newPasswordController.text),
-                        obscureText: _isNewConfirmObscure,
-                        style: kNotoSansMedium16.copyWith(color: AppColors.dark),
-                        textInputAction: TextInputAction.done,
-                        onEditingComplete: _isNewConfirmValid
-                            ? () {
-                          node.unfocus();
-                        }
-                            : null,
-                        autofocus: false,
-                        cursorColor: AppColors.azul,
-                        decoration: InputDecoration(
-                          counterText: ' ',
-                          labelText: "새 비밀번호 재입력",
-                          labelStyle: kNotoSansMedium12.copyWith(
-                            color: AppColors.lightBlueGrey,
-                          ),
-                          hintText: '새 비밀번호 재입력(영문 숫자 8자리 이상)',
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: AppColors.azul,
-                              width: 1.5,
-                            ),
-                          ),
-                          border: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: AppColors.lightBlueGrey,
-                              width: 1.0,
-                            ),
-                          ),
-                          alignLabelWithHint: true,
-                          isDense: true,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
