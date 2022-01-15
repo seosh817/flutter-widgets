@@ -15,19 +15,15 @@ class _ButtonAboveKeyboardPageState extends State<ButtonAboveKeyboardScreen> {
   TextEditingController _idController = TextEditingController();
   TextEditingController _passWordController = TextEditingController();
 
-  bool _isValid;
-  bool _isNewObscure;
+  bool _isValid = false;
+  bool _isNewObscure = false;
 
-  bool _isPasswordValid;
-  bool _isPasswordObscure;
+  bool _isPasswordValid = false;
+  bool _isPasswordObscure = false;
 
   @override
   void initState() {
     super.initState();
-    _isValid = false;
-    _isNewObscure = true;
-    _isPasswordValid = false;
-    _isPasswordObscure = true;
     _idController.addListener(() {});
     _passWordController.addListener(() {});
   }
@@ -81,14 +77,13 @@ class _ButtonAboveKeyboardPageState extends State<ButtonAboveKeyboardScreen> {
                   primary: AppColors.azul,
                   onSurface: AppColors.blueGrey,
                 ),
+                onPressed: () {  },
                 child: Text('Login'),
               ),
             ),
           ),
         ),
-        body: SingleChildScrollView(
-          reverse: false,
-          physics: BouncingScrollPhysics(),
+        body: SafeArea(
           child: Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
