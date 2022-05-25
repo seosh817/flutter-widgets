@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widgets/screen/animated_container_screen.dart';
 import 'package:flutter_widgets/screen/animated_opacity_screen.dart';
 import 'package:flutter_widgets/screen/button_above_keyboard.dart';
+import 'package:flutter_widgets/screen/custom_card_screen.dart';
 import 'package:flutter_widgets/screen/drawer_screen.dart';
 import 'package:flutter_widgets/screen/first_screen.dart';
 import 'package:flutter_widgets/screen/second_screen.dart';
@@ -163,6 +164,15 @@ class HomeScreen extends StatelessWidget {
                       );
                     },
                   ),
+                  ListTile(
+                    title: Text('Card'),
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        CustomCardScreen.routeName
+                      );
+                    }
+                  )
                 ],
               ),
             )
@@ -177,4 +187,5 @@ final routes = {
   ButtonAboveKeyboardScreen.routeName: (context) => ButtonAboveKeyboardScreen(),
   HomeScreen.routeName: (context) => HomeScreen(),
   SecondScreen.routeName: (context) => SecondScreen(),
+  CustomCardScreen.routeName: (context) => CustomCardScreen(),
 };

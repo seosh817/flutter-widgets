@@ -19,7 +19,7 @@ class _SnackBarState extends State<SnackBarScreen> {
               action: SnackBarAction(label: '취소', onPressed: () {},),
               );
               // ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              Scaffold.of(context).showSnackBar(snackBar);
+              // Scaffold.of(context).showSnackBar(snackBar);
             },
             child: Text('Show SnackBar'),
           ),
