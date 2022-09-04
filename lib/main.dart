@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_widgets/screen/animated_container_screen.dart';
 import 'package:flutter_widgets/screen/animated_opacity_screen.dart';
+import 'package:flutter_widgets/screen/battery_plugin_screen.dart';
 import 'package:flutter_widgets/screen/button_above_keyboard.dart';
 import 'package:flutter_widgets/screen/custom_card_screen.dart';
 import 'package:flutter_widgets/screen/drawer_screen.dart';
@@ -172,7 +173,16 @@ class HomeScreen extends StatelessWidget {
                         CustomCardScreen.routeName
                       );
                     }
-                  )
+                  ),
+                  ListTile(
+                      title: Text('Battery Plugin Screen'),
+                      onTap: () {
+                        Navigator.pushNamed(
+                            context,
+                            BatteryPluginScreen.routeName
+                        );
+                      }
+                  ),
                 ],
               ),
             )
@@ -188,4 +198,5 @@ final routes = {
   HomeScreen.routeName: (context) => HomeScreen(),
   SecondScreen.routeName: (context) => SecondScreen(),
   CustomCardScreen.routeName: (context) => CustomCardScreen(),
+  BatteryPluginScreen.routeName: (context) => BatteryPluginScreen(),
 };
