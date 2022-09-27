@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/custom/custom_circular_progress.dart';
 
 import 'package:flutter_widgets/screen/animated_container_screen.dart';
 import 'package:flutter_widgets/screen/animated_opacity_screen.dart';
 import 'package:flutter_widgets/screen/battery_plugin_screen.dart';
 import 'package:flutter_widgets/screen/button_above_keyboard.dart';
+import 'package:flutter_widgets/screen/permission_request_screen.dart';
 import 'package:flutter_widgets/screen/custom_card_screen.dart';
 import 'package:flutter_widgets/screen/drawer_screen.dart';
 import 'package:flutter_widgets/screen/first_screen.dart';
@@ -60,6 +62,7 @@ class HomeScreen extends StatelessWidget {
       body: Container(
         child: Column(
           children: [
+            CustomCircularProgress(width: 300, height: 300, startAngle: 60,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -183,6 +186,18 @@ class HomeScreen extends StatelessWidget {
                         );
                       }
                   ),
+                  ListTile(
+                      title: Text('Request Permission Screen'),
+                      onTap: () {
+                        Navigator.pushNamed(
+                            context,
+                            PermissionRequestScreen.routeName
+                        );
+                      }
+                  ),
+                        );
+                      }
+                  ),
                 ],
               ),
             )
@@ -199,4 +214,5 @@ final routes = {
   SecondScreen.routeName: (context) => SecondScreen(),
   CustomCardScreen.routeName: (context) => CustomCardScreen(),
   BatteryPluginScreen.routeName: (context) => BatteryPluginScreen(),
+  PermissionRequestScreen.routeName: (context) => PermissionRequestScreen(),
 };
